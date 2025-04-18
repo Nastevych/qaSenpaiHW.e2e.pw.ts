@@ -10,3 +10,4 @@ node_modules/
 /tests/lecture
 /cheat-sheets/
 /.github/
+/tests/16-hw/.auth/
