@@ -1,6 +1,10 @@
 import { expect } from "@playwright/test";
-import { test } from "./conduitFixture";
-import { getRandomString } from "./helpers";
+import { test } from "./conduitFixtureNewUser";
+import {
+  testArticleData,
+  testEditedArticleData,
+  newUseData,
+} from "./test.data";
 
 test("14-001 Create new article success", async ({
   homePage,
@@ -9,25 +13,19 @@ test("14-001 Create new article success", async ({
   articlePage,
 }) => {
   await signUpPage.gotSignUpNewUserPage();
-  await signUpPage.registerUser({
-    username: getRandomString(8),
-    email: getRandomString(8) + "@ami.co",
-    pass: getRandomString(8),
-  });
+  await signUpPage.registerUser(newUseData);
 
   await homePage.goToCreateNewArticlePageUsingHeaderButton();
 
-  await articleEditorPage.editArticle({
-    title: "random title",
-    description: "random desc",
-    body: "random body",
-  });
+  await articleEditorPage.editArticle(testArticleData);
 
   await articleEditorPage.publishArticle();
 
-  const articleHeader = await articlePage.getArticleHeaderTitle("random title");
+  const articleHeader = await articlePage.getArticleHeaderTitle(
+    testArticleData.title
+  );
 
-  await expect(articleHeader).toContain("random title");
+  await expect(articleHeader).toContain(testArticleData.title);
 });
 
 test("14-002 Edit new article success", async ({
@@ -37,35 +35,25 @@ test("14-002 Edit new article success", async ({
   articlePage,
 }) => {
   await signUpPage.gotSignUpNewUserPage();
-  await signUpPage.registerUser({
-    username: getRandomString(8),
-    email: getRandomString(8) + "@ami.co",
-    pass: getRandomString(8),
-  });
+  await signUpPage.registerUser(newUseData);
 
   await homePage.goToCreateNewArticlePageUsingHeaderButton();
 
-  await articleEditorPage.editArticle({
-    title: "random title",
-    description: "random desc",
-    body: "random body",
-  });
+  await articleEditorPage.editArticle(testArticleData);
 
   await articleEditorPage.publishArticle();
 
   await articlePage.goToEditArticle();
 
-  await articleEditorPage.editArticle({
-    title: "edited title",
-    description: "edited desc",
-    body: "edited body",
-  });
+  await articleEditorPage.editArticle(testEditedArticleData);
 
   await articleEditorPage.publishArticle();
 
-  const articleHeader = await articlePage.getArticleHeaderTitle("edited title");
+  const articleHeader = await articlePage.getArticleHeaderTitle(
+    testEditedArticleData.title
+  );
 
-  expect(articleHeader).toContain("edited title");
+  expect(articleHeader).toContain(testEditedArticleData.title);
 });
 
 test("14-003 Delete new article success", async ({
@@ -75,19 +63,11 @@ test("14-003 Delete new article success", async ({
   articlePage,
 }) => {
   await signUpPage.gotSignUpNewUserPage();
-  await signUpPage.registerUser({
-    username: getRandomString(8),
-    email: getRandomString(8) + "@ami.co",
-    pass: getRandomString(8),
-  });
+  await signUpPage.registerUser(newUseData);
 
   await homePage.goToCreateNewArticlePageUsingHeaderButton();
 
-  await articleEditorPage.editArticle({
-    title: "random title1",
-    description: "random desc",
-    body: "random body",
-  });
+  await articleEditorPage.editArticle(testArticleData);
 
   await articleEditorPage.publishArticle();
 
@@ -96,5 +76,5 @@ test("14-003 Delete new article success", async ({
   const globalFeedFirstArticle =
     await homePage.getGlobalFeedFirstArticleTitle();
 
-  await expect(globalFeedFirstArticle).not.toContain("random title1");
+  await expect(globalFeedFirstArticle).not.toContain(testArticleData.title);
 });

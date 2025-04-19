@@ -6,6 +6,18 @@ export const testArticleData = {
   body: faker.commerce.productDescription(),
 };
 
+export const testEditedArticleData = {
+  title: faker.commerce.productName(),
+  description: faker.commerce.productMaterial(),
+  body: faker.commerce.productDescription(),
+};
+
+export const newUseData = {
+  username: faker.person.lastName(),
+  email: faker.internet.email(),
+  pass: faker.internet.password(),
+};
+
 export const usersData = {
   admin: {
     pass: "borys",

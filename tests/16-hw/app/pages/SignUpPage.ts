@@ -18,7 +18,7 @@ export class SignUpPage extends BasePage {
   }
 
   async gotSignUpNewUserPage() {
-    await this.page.goto("/register");
+    await this.page.goto("https://demo.learnwebdriverio.com/register");
   }
 
   private async setUsername(username: string = "") {

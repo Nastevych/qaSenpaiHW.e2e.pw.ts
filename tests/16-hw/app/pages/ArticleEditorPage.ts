@@ -14,7 +14,9 @@ export class ArticleEditorPage extends BasePage {
     this.bodyLocator = page.getByRole("textbox", {
       name: "Write your article",
     });
-    this.publishArticleButtonLocator = page.locator(`//button[@type="submit"]`);
+    this.publishArticleButtonLocator = page.getByRole("button", {
+      name: "Publish Article",
+    });
   }
 
   async gotoEditorPage() {
@@ -33,5 +35,6 @@ export class ArticleEditorPage extends BasePage {
 
   async publishArticle() {
     await this.publishArticleButtonLocator.click();
+    await this.publishArticleButtonLocator.waitFor({ state: "hidden" });
   }
 }
