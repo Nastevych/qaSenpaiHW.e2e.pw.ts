@@ -1,8 +1,7 @@
 import { expect } from "@playwright/test";
 import { test } from "./conduitFixture";
 import { testArticleData, usersData } from "./test.data";
-import fs from "fs";
-import path from "path";
+import {deleteAuthDataFileForUser} from './helpers'
 
 test.use({ authData: usersData.admin });
 
@@ -23,10 +22,7 @@ test(`16-001 create article by admin success`, async ({
   await expect(articleHeader).toContain(testArticleData.title);
 });
 
+
 test.afterAll(async ({}) => {
-  fs.readdirSync("tests/16-hw/.auth").forEach((file) => {
-    if (file.includes(usersData.admin.email)) {
-      fs.rmSync(path.join("tests/16-hw/.auth", file));
-    }
-  });
+  deleteAuthDataFileForUser(usersData.admin.email);
 });
