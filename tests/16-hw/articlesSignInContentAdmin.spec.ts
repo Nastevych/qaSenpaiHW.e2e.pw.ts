@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test } from "./conduitFixtureRegisteredUser";
+import { test } from "./conduitFixture";
 import { testArticleData, usersData } from "./test.data";
 import fs from "fs";
 import path from "path";
