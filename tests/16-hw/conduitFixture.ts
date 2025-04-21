@@ -46,27 +46,30 @@ export const test = base.extend<Fixture>({
     await use(signInPage);
   },
 
-  // authData: {},
+  authData: {},
 
-  // storageState: async ({ browser, authData }, use) => {
-  //   const filePath = `tests/16-hw/.auth/auth${authData.email}.json`;
+  
+  storageState: async ({ browser, authData }, use) => {
+    if (Object.keys(authData).length !== 0){
+    const filePath = `tests/16-hw/.auth/auth${authData.email}.json`;
 
-  //   const ifFileExist = fs.existsSync(filePath);
+    const ifFileExist = fs.existsSync(filePath);
 
-  //   if (ifFileExist === false) {
-  //     const page = await browser.newPage();
+    if (ifFileExist === false) {
+      const page = await browser.newPage();
 
-  //     const signInPage = new SignInPage(page);
+      const signInPage = new SignInPage(page);
 
-  //     await signInPage.signIn(authData);
+      await signInPage.signIn(authData);
 
-  //     await page.waitForResponse("**/api/user/");
+      await page.waitForResponse("**/api/user/");
 
-  //     await page.context().storageState({ path: filePath });
+      await page.context().storageState({ path: filePath });
 
-  //     await page.close();
-  //   }
+      await page.close();
+    }
 
-  //   await use(filePath);
-  // },
+    await use(filePath);
+  } else {await use (undefined)}
+}
 });

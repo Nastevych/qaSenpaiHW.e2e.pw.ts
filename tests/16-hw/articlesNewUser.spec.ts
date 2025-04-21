@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test } from "./conduitFixtureNewUser";
+import { test } from "./conduitFixture";
 import {
   testArticleData,
   testEditedArticleData,
