@@ -33,11 +33,11 @@ export class SignUpPage extends BasePage {
     await this.emailLocator.fill(email);
   }
 
-  async clickSignUp() {
+  private async clickSignUp() {
     await this.signUpButtonLocator.click();
   }
 
-  async registerUser(registrationData: {
+  private async setRegisterUserPage(registrationData: {
     pass?: string;
     email?: string;
     username?: string;
@@ -46,5 +46,16 @@ export class SignUpPage extends BasePage {
     await this.setEmail(registrationData.email);
     await this.setPassword(registrationData.pass);
     await this.clickSignUp();
+  }
+
+  async registerNewUser(registrationData: {
+    pass?: string;
+    email?: string;
+    username?: string;
+  }) {
+    await this.gotSignUpNewUserPage();
+    await this.setRegisterUserPage(registrationData);
+    await this.clickSignUp();
+    await this.signUpButtonLocator.waitFor({ state: "hidden" });
   }
 }
