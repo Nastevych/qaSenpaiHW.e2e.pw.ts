@@ -27,7 +27,7 @@ export class SignInPage extends BasePage {
     await this.emailLocator.fill(email);
   }
 
-  async clickSignIn() {
+  private async clickSignIn() {
     await this.signInButtonLocator.click();
   }
 

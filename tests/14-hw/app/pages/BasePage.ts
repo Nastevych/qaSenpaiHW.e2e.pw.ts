@@ -29,35 +29,35 @@ export class BasePage {
     this.headerSignUpPageButtonLocator = page.locator('[href="/register"]');
   }
 
-  async goToHomePage() {
+  protected async goToHomePage() {
     await this.page.goto("");
   }
 
-  async goToMainPageUsingHeaderLogoButton() {
+  protected async goToMainPageUsingHeaderLogoButton() {
     await this.headerLogoHomePageNavButtonLocator.click();
   }
 
-  async goToMainPageUsingHeaderHomeButton() {
+  protected async goToMainPageUsingHeaderHomeButton() {
     await this.headerHomeNavButtonLocator.click();
   }
 
-  async goToCreateNewArticlePageUsingHeaderButton() {
+  protected async goToCreateNewArticlePageUsingHeaderButton() {
     await this.headerNewArticleButtonLocator.click();
   }
 
-  async goToSettingsPageUsingHeaderButton() {
+  protected async goToSettingsPageUsingHeaderButton() {
     this.headerSettingsButtonLocator.click();
   }
 
-  async goToUserPageUsingHeaderButton() {
+  protected async goToUserPageUsingHeaderButton() {
     this.headerUserPageNavButton.click();
   }
 
-  async goToSignInPageUsingHeaderButton() {
+  protected async goToSignInPageUsingHeaderButton() {
     this.headerSignInPageButtonLocator.click();
   }
 
-  async goToSignUpPageUsingHeaderButton() {
+  protected async goToSignUpPageUsingHeaderButton() {
     this.headerSignUpPageButtonLocator.click();
   }
 }

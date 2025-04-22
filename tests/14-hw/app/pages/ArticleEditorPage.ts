@@ -1,13 +1,11 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
-export class ArticleEditorPage extends BasePage {
-    
-    private titleLocator: Locator;
-    private descriptionLocator: Locator;
-    private bodyLocator: Locator;
-    private publishArticleButtonLocator: Locator;
-    
+export abstract class ArticleEditorPage extends BasePage {
+  private titleLocator: Locator;
+  private descriptionLocator: Locator;
+  private bodyLocator: Locator;
+  private publishArticleButtonLocator: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -19,11 +17,11 @@ export class ArticleEditorPage extends BasePage {
     this.publishArticleButtonLocator = page.locator(`//button[@type="submit"]`);
   }
 
-  async goto() { 
+  protected async gotoArticleEditorPage() {
     await this.page.goto("/editor");
-}
+  }
 
-  async editArticle(articleData: {
+  protected async editArticle(articleData: {
     title: string;
     description: string;
     body: string;
@@ -33,7 +31,7 @@ export class ArticleEditorPage extends BasePage {
     await this.bodyLocator.fill(articleData.body);
   }
 
-  async publishArticle() {
+  protected async publishArticle() {
     await this.publishArticleButtonLocator.click();
   }
 }
