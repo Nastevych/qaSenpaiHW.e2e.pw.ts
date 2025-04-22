@@ -12,20 +12,21 @@ export const testEditedArticleData = {
   body: faker.commerce.productDescription(),
 };
 
-export const newUseData = {
+export const newUserData = {
   username: faker.person.lastName(),
   email: faker.internet.email(),
   pass: faker.internet.password(),
 };
 
-export const usersData = {
-  admin: {
+export const usersData = [
+  {
+    role: "Admin",
     pass: "borys",
     email: "borys@gg.com",
   },
-
-  contentAdmin: {
+  {
+    role: "ContentAdmin",
     pass: "contentadmin",
     email: "contentadmin@gg.com",
   },
-};
+];

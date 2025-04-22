@@ -4,7 +4,7 @@ import { BasePage } from "./BasePage";
 export class ArticlePage extends BasePage {
   private editArticleButtonLocator: Locator;
   private deleteArticleButtonLocator: Locator;
-  private articleHeaderTitleLocator: (title: string) => Locator;
+  articleHeaderTitleLocator: (title: string) => Locator;
 
   constructor(page: Page) {
     super(page);

@@ -31,7 +31,7 @@ export class SignInPage extends BasePage {
     await this.signInButtonLocator.click();
   }
 
-  async signIn(signINData: { pass?: string; email?: string }) {
+  async signIn(signINData: { role?: string; pass?: string; email?: string }) {
     await this.gotSignInPage();
     await this.setEmail(signINData.email);
     await this.setPassword(signINData.pass);

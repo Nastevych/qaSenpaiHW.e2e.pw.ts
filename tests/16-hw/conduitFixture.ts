@@ -1,18 +1,20 @@
 import { test as base, ConsoleMessage } from "@playwright/test";
 import { SignUpPage } from "./app/pages/SignUpPage";
-import { ArticleEditorPage } from "./app/pages/ArticleEditorPage";
 import { ArticlePage } from "./app/pages/ArticlePage";
 import { HomePage } from "./app/pages/HomePage";
 import { SignInPage } from "./app/pages/SignInPage";
 import fs from "fs";
+import { ArticleCreationPage } from "./app/pages/ArticleCreationPage";
+import { ArticleEditingPage } from "./app/pages/ArticleEditingPage";
 
 type Fixture = {
   signUpPage: SignUpPage;
-  articleEditorPage: ArticleEditorPage;
   articlePage: ArticlePage;
   homePage: HomePage;
   signInPage: SignInPage;
-  authData: { pass?: string; email?: string };
+  authData: { role?: string; pass?: string; email?: string };
+  articleCreationPage: ArticleCreationPage;
+  articleEditingPage: ArticleEditingPage;
 };
 
 export const test = base.extend<Fixture>({
@@ -22,10 +24,16 @@ export const test = base.extend<Fixture>({
     await use(signUpPage);
   },
 
-  articleEditorPage: async ({ page }, use) => {
-    const articleEditorPage = new ArticleEditorPage(page);
+  articleCreationPage: async ({ page }, use) => {
+    const articleCreationPage = new ArticleCreationPage(page);
 
-    await use(articleEditorPage);
+    await use(articleCreationPage);
+  },
+
+  articleEditingPage: async ({ page }, use) => {
+    const articleEditingPage = new ArticleEditingPage(page);
+
+    await use(articleEditingPage);
   },
 
   articlePage: async ({ page }, use) => {
@@ -50,7 +58,7 @@ export const test = base.extend<Fixture>({
 
   storageState: async ({ browser, authData }, use) => {
     if (Object.keys(authData).length !== 0) {
-      const filePath = `tests/16-hw/.auth/auth${authData.email}.json`;
+      const filePath = `tests/16-hw/.auth/auth-${authData.role}.json`;
 
       const ifFileExist = fs.existsSync(filePath);
 
