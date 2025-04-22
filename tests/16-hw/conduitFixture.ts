@@ -12,7 +12,7 @@ type Fixture = {
   articlePage: ArticlePage;
   homePage: HomePage;
   signInPage: SignInPage;
-  authData: { pass?: string; email?: string };
+  authData: { role?: string; pass?: string; email?: string };
 };
 
 export const test = base.extend<Fixture>({
@@ -50,7 +50,7 @@ export const test = base.extend<Fixture>({
 
   storageState: async ({ browser, authData }, use) => {
     if (Object.keys(authData).length !== 0) {
-      const filePath = `tests/16-hw/.auth/auth${authData.email}.json`;
+      const filePath = `tests/16-hw/.auth/auth-${authData.role}.json`;
 
       const ifFileExist = fs.existsSync(filePath);
 
