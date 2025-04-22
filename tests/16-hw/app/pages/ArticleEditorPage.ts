@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
-export class ArticleEditorPage extends BasePage {
+export abstract class ArticleEditorPage extends BasePage {
   private titleLocator: Locator;
   private descriptionLocator: Locator;
   private bodyLocator: Locator;
@@ -19,11 +19,11 @@ export class ArticleEditorPage extends BasePage {
     });
   }
 
-  async gotoEditorPage() {
+  protected async gotoArticleEditorPage() {
     await this.page.goto("/editor");
   }
 
-  async editArticle(articleData: {
+  protected async editArticle(articleData: {
     title: string;
     description: string;
     body: string;
@@ -33,7 +33,7 @@ export class ArticleEditorPage extends BasePage {
     await this.bodyLocator.fill(articleData.body);
   }
 
-  async publishArticle() {
+  protected async publishArticle() {
     await this.publishArticleButtonLocator.click();
     await this.publishArticleButtonLocator.waitFor({ state: "hidden" });
   }
