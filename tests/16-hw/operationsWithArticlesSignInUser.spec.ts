@@ -44,8 +44,8 @@ for (const user of usersData) {
       );
     });
 
-    test.afterAll(async ({}) => {
-      deleteAuthDataFileForUser(user.role);
-    });
+    // test.afterAll(async ({}) => {
+    //   deleteAuthDataFileForUser(user.role);
+    // });
   });
 }
