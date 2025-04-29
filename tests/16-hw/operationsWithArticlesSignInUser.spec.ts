@@ -2,6 +2,7 @@ import { expect } from "@playwright/test";
 import { test } from "./conduitFixture";
 import { testArticleData, testEditedArticleData, usersData } from "./test.data";
 import { deleteAuthDataFileForUser } from "./helpers";
+import { SignInPage } from "./app/pages/SignInPage";
 
 for (const user of usersData) {
   test.describe(`Operations with articles by ${user.role}`, () => {

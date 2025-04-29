@@ -42,6 +42,7 @@ export class SignUpPage extends BasePage {
     email?: string;
     username?: string;
   }) {
+    await this.gotSignUpNewUserPage();
     await this.setUsername(registrationData.username);
     await this.setEmail(registrationData.email);
     await this.setPassword(registrationData.pass);

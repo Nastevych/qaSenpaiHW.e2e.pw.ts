@@ -9,4 +9,4 @@ node_modules/
 /tests/AO
 /tests/lecture
 /cheat-sheets/
-/tests/16-hw/.auth/
+.env
