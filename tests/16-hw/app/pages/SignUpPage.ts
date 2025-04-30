@@ -47,5 +47,6 @@ export class SignUpPage extends BasePage {
     await this.setEmail(registrationData.email);
     await this.setPassword(registrationData.pass);
     await this.clickSignUp();
+    await this.signUpButtonLocator.waitFor({ state: "hidden" });
   }
 }
