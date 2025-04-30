@@ -20,12 +20,12 @@ export const newUserData = {
 
 export const usersData = [
   {
-    role: "adminn",
+    role: "admin123",
     pass: process.env.PASSWORD,
     email: "borysss@gg.com",
   },
   {
-    role: "contentadminn",
+    role: "contentadmin123",
     pass: process.env.PASSWORD,
     email: "contentadminnn@gg.com",
   },
