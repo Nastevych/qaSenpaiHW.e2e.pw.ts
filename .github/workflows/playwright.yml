@@ -10,6 +10,8 @@ on:
 
 jobs:
   test:
+    env:
+      PASSWORD: ${{secrets.PASSWORD}}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
